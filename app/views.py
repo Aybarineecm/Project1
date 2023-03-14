@@ -37,26 +37,23 @@ def create():
         return render_template("createProperty.html",form=propForm)
         
     if request.method == 'POST' and propForm.validate_on_submit():
-        
-        #photo =  myform.photo.data  
-        #filename = secure_filename(photo.filename)
-       
-        
-        title = propForm.title.data
-        bedNum = propForm.bedNum.data
-        bathNum = propForm.bathNum.data
-        location = propForm.location.data
-        propType = propForm.propType.data
-        price = propForm.price.data
-        descr =  propForm.descr.data
-        
+        result= request.form
+        print(result)
+
+        title = result['title']
+        bedNum = result['bednum']
+        bathNum = result['bathnum']
+        location = result['location']
+        PropType = result['proptype']
+        price = result['price']
+        descr = result ['descr']
         photo=propForm.photo.data
         filename=secure_filename(photo.filename)
         photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
         propinfo = Properties(title=title , 
-                                    bedNum=bedNum, bathNum = bathNum, 
-                                    location = location, PropType = propType,
+                                    bednum=bedNum, bathnum = bathNum, 
+                                    location = location, proptype = PropType,
                                     price = price, descr= descr, photo = filename) 
         
         db.session.add(propinfo)
@@ -82,7 +79,7 @@ def DisplayProp():
         return render_template('allProperty.html', filenames= photos , properties= get_prop_info() ,rootdirectory = rootdir, len = length)
     else: 
         flash("No properties", 'danger')
-        return redirect('allProperty.html')
+        return redirect(url_for('create'))
 
 def get_uploaded_images():
     rootdir =os.getcwd()
