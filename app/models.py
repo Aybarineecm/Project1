@@ -1,5 +1,7 @@
 from . import db #ask sir what this does
+from flask import Flask, request
 
+app= Flask(__name__)
 class Properties(db.Model):
 
      __tablename__ = 'properties'
