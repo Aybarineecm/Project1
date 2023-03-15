@@ -41,10 +41,10 @@ def create():
         print(result)
 
         title = result['title']
-        bedNum = result['bednum']
-        bathNum = result['bathnum']
+        bednum = result['bednum']
+        bathnum = result['bathnum']
         location = result['location']
-        PropType = result['proptype']
+        proptype = result['proptype']
         price = result['price']
         descr = result ['descr']
         photo=propForm.photo.data
@@ -52,8 +52,8 @@ def create():
         photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
         propinfo = Properties(title=title , 
-                                    bednum=bedNum, bathnum = bathNum, 
-                                    location = location, proptype = PropType,
+                                    bednum=bednum, bathnum = bathnum, 
+                                    location = location, proptype = proptype,
                                     price = price, descr= descr, photo = filename) 
         
         db.session.add(propinfo)

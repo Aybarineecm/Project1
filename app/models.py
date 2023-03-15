@@ -20,9 +20,9 @@ class Properties(db.Model):
      def __init__(self,title, location,bathnum,bednum, price,proptype,descr,photo):
          self.title = title 
          self.location = location
-         self.bathNum = bathnum
-         self.bedNum = bednum
+         self.bathnum = bathnum
+         self.bednum = bednum
          self.price = price  
-         self.PropType = proptype
+         self.proptype = proptype
          self.photo= photo
          self.descr = descr
